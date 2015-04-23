@@ -22,9 +22,9 @@
     <span class="pipe">|</span><a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href)">{lang activation}</a>
     <span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
 <!--{elseif !$_G[connectguest]}-->
-    <a href="member.php?mod=logging&amp;action=login" class="login" onClick="showWindow('login', this.href)" >µÇÂ¼</a>
+    <a href="member.php?mod=logging&amp;action=login" class="login" onClick="showWindow('login', this.href)" >Sign in</a>
     <span class="pipe">|</span>
-    <a href="member.php?mod=register" >Á¢¼´×¢²á</a>
+    <a href="member.php?mod=register" >Sign out</a>
 <!--{else}-->
     <span class="user">{$_G[member][username]}</span>
     <!--{hook/global_usernav_extra1}-->
