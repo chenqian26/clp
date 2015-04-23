@@ -1,0 +1,15 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+		<div class="z">
+			<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="timeline.php">{$_G[setting][navs][154][navname]}</a>$navigation
+		</div>
+	</div>
+
+<div style="color:#005F30">
+  <ul>
+    <!--{loop $projects $key $value}-->
+    <li>{$projects[$key]['name']}   状态:{$projects[$key]['status']}  <a href='timeline.php?mod=join&pid={$projects[$key]['id']}'>报名</a></li>
+    <!--{/loop}-->
+  </ul>
+  </div>
+<!--{template common/footer}-->
