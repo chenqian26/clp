@@ -1,0 +1,418 @@
+{template common/header}
+<link rel="stylesheet" href="source/plugin/liangjianwenwen/css/g1.css">
+<link rel="stylesheet" href="source/plugin/liangjianwenwen/css/g2.css">
+
+<script src="source/plugin/liangjianwenwen/js/5.js" type="text/javascript"></script>
+
+<div id="doc4" style="min-height:760px; background-color:#FFF;">  <style type="text/css">
+#hd {margin:0 auto;}	
+ </style>
+  <style type="text/css">
+.grid-3 {width:100% !important;}
+ </style>
+		  <div id="pt" class="bm cl"><div class="z">
+<a href="index.php" class="nvhm" title="{lang liangjianwenwen:wenwen1}">$_G[setting][bbname]</a><em> &rsaquo; </em><a href="<!--{if $config['isrewrite']}-->wenda.html<!--{else}-->plugin.php?id=liangjianwenwen:wenwen<!--{/if}-->">$config['daohang']</a></div> 
+</div>
+		<div id="bd" class="gridone clearfix">
+            <div class="article">
+			{if $config['islz']}
+                <div class="mod-slides widget-slide" data-jss="animType:&#39;fade&#39;,autoPlay:true,autoPlayTime:5000,animDur:300,supportMouseenter:true">
+                    <ul class="pic slide-content">
+                        <li class="pic-item" style="opacity: 0; ">
+                            <a href="<!--{eval echo getturl($im1['tid'])}-->" class="img" target="_blank">
+							<!--{if $tupian1}-->
+                                <img  alt="$im1['subject']" title="" src="$tupian1">
+								<!--{else}-->
+								 <img  alt="$im1['subject']" title="" src="data/attachment/forum/$im1['attachment']">
+								 <!--{/if}-->
+                            </a>
+                            <div class="info">
+                                <h4>
+
+                                    <a href="<!--{eval echo getturl($im1['tid'])}-->" target="_blank">
+                                        $im1['subject']                                    </a>
+<sup></sup>
+                                </h4>
+                                <ul>
+									<!--{loop $wwarr $key $val}-->
+                                    <li>
+                                        <a style="color: #0063C8;" href="<!--{eval echo getturl($val['tid'])}-->" target="_blank">
+                                            $val['subject']                                        </a>
+                                    </li>
+									<!--{/loop}-->
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="pic-item" style="opacity: 0; ">
+                            <a href="<!--{eval echo getturl($im2['tid'])}-->" class="img" target="_blank">
+							<!--{if $tupian2}-->
+                                <img alt="$im2['subject']" title="" src="$tupian2">
+								<!--{else}-->
+								<img alt="$im2['subject']" title="" src="data/attachment/forum/$im2['attachment']">
+								 <!--{/if}-->
+                            </a>
+<sup></sup>
+                            <div class="info">
+                                <h4>
+                                    <a href="<!--{eval echo getturl($im2['tid'])}-->" target="_blank">
+                                       $im2['subject']                                    </a>
+                                    <sup>
+                                    </sup>
+                                </h4>
+                                <ul>
+
+								<!--{loop $ggarr $key $val}-->
+                                    <li>
+                                        <a style="color: #0063C8;" href="<!--{eval echo getturl($val['tid'])}-->" target="_blank">
+                                            $val['subject']                                        </a>
+                                    </li>
+								<!--{/loop}-->
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="pic-item selected" style="opacity: 1; ">
+                            <a href="<!--{eval echo getturl($im3['tid'])}-->" class="img" target="_blank">
+							<!--{if $tupian3}-->
+                                <img alt="$im3['subject']" title="" src="$tupian3">
+								<!--{else}-->
+								 <img alt="$im3['subject']" title="" src="data/attachment/forum/$im3['attachment']">
+								  <!--{/if}-->
+                            </a>
+<sup></sup>
+                            <div class="info">
+                                <h4>
+                                    <a  href="<!--{eval echo getturl($im3['tid'])}-->" target="_blank">
+                                       $im3['subject']                                    </a>
+                                    <sup>
+                                    </sup>
+                                </h4>
+                                <ul>
+	
+                                   <!--{loop $ffarr $key $val}-->
+                                    <li>
+                                        <a style="color: #0063C8;" href="<!--{eval echo getturl($val['tid'])}-->">
+                                            $val['subject']                                        </a>
+                                    </li>
+								<!--{/loop}-->
+                                    
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="text slide-nav">
+                        <li class="">
+                            <span>
+                                $im1['subject']                            </span>
+                            <i class="arrow">
+                            </i>
+                        </li>
+                        <li class="">
+                            <span>
+                                $im2['subject']                            </span>
+                            <i class="arrow">
+                            </i>
+                        </li>
+                        <li class="selected">
+                            <span>
+                                $im3['subject']                            </span>
+                            <i class="arrow">
+                            </i>
+                        </li>
+                    </ul>
+                </div>
+				{else}
+				<style type="text/css">
+					.mod-qa-list{
+						margin-top:0px;
+					}
+				</style>
+				{/if}
+				<!--{if $config['wei']}-->
+                <div class="mod-qa-list">
+                    <div class="hd">
+                        <h3 class="t1">
+                            {lang liangjianwenwen:wenwen4}
+                        </h3>
+                        <p class="more">
+                            <a href="<!--{eval echo getfurl($fid)}-->">
+                                {lang liangjianwenwen:wenwen5}&gt;&gt;
+                            </a>
+                        </p>
+                    </div>
+                    <div class="bd">
+                        <div class="cls-qa-list-1">
+                            <ul>
+<!--{loop $djarr $key $val}-->
+                                <li>
+                                    <span class="s0">
+
+                                        <a title="$val['subject']" target="_blank" href="<!--{eval echo getturl($val['tid'])}-->">
+                                           <span class="wealth">$val['price']</span> $val['subject']                                        </a>
+                                    </span>
+                                    <span class="s1">
+                                        $val['replies']{lang liangjianwenwen:wenwen6}
+                                    </span>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<!--{/if}-->
+				<!--{if $config['lin']}-->
+				 <div class="mod-qa-list">
+                    <div class="hd">
+                        <h3 class="t1">
+                            {lang liangjianwenwen:wenwen43}
+                        </h3>
+                        <p class="more">
+                            <a href="<!--{eval echo getfurl($fid)}-->">
+                                {lang liangjianwenwen:wenwen5}&gt;&gt;
+                            </a>
+                        </p>
+                    </div>
+                    <div class="bd">
+                        <div class="cls-qa-list-1">
+                            <ul>
+<!--{loop $zeroarr $key $val}-->
+                                <li>
+                                    <span class="s0">
+
+                                        <a title="$val['subject']" target="_blank" href="<!--{eval echo getturl($val['tid'])}-->">
+                                           <span class="wealth">$val['price']</span> $val['subject']                                        </a>
+                                    </span>
+                                    <span class="s1">
+                                        $val['replies']{lang liangjianwenwen:wenwen6}
+                                    </span>
+                                </li>
+                                <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<!--{/if}-->
+				<!--{if $config['xuan']}-->
+                <div class="mod-qa-list">
+                    <div class="hd">
+                        <h3 class="t2">
+                            {lang liangjianwenwen:wenwen41}
+                        </h3>
+                        <p class="more">
+                            <a href="<!--{eval echo getfurl($fid)}-->">
+                                {lang liangjianwenwen:wenwen5}&gt;&gt;
+                            </a>
+                        </p>
+                    </div>
+                    <div class="bd">
+                        <div class="cls-qa-list-1">
+                            <ul>
+							<!--{loop $xsarr $key $val}-->
+<li>
+<span class="s0">
+
+<a title="$val['subject']" target="_blank" href="<!--{eval echo getturl($val['tid'])}-->">
+   <span class="wealth">$val['price']</span> $val['subject']</a>
+</span>
+<span class="s1">
+$val['replies']{lang liangjianwenwen:wenwen6}
+</span>
+</li>
+ <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<!--{/if}-->
+				<!--{if $config['yi']}-->
+				<div class="mod-qa-list">
+                    <div class="hd">
+                        <h3 class="t2">
+                           {lang liangjianwenwen:wenwen44}
+                        </h3>
+                        <p class="more">
+                            <a href="<!--{eval echo getfurl($fid)}-->">
+                                {lang liangjianwenwen:wenwen5}&gt;&gt;
+                            </a>
+                        </p>
+                    </div>
+                    <div class="bd">
+                        <div class="cls-qa-list-1">
+                            <ul>
+							<!--{loop $yjarr $key $val}-->
+<li>
+<span class="s0">
+
+<a title="$val['subject']" target="_blank" href="<!--{eval echo getturl($val['tid'])}-->">
+   <span class="wealth">$val['price']</span> $val['subject']</a>
+</span>
+<span class="s1">
+$val['replies']{lang liangjianwenwen:wenwen6}
+</span>
+</li>
+ <!--{/loop}-->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<!--{/if}-->
+            </div>
+{if $config['istwo']}
+<style type="text/css">
+	.mod-cate .item li {
+    width: 45%;
+}
+</style>
+{/if}
+            <div class="aside">
+
+                <div class="mod-cate">
+                    <div class="hd">
+                        <h3>
+                            {lang liangjianwenwen:wenwen8}
+                        </h3>
+                    </div>
+                    <div id="modetop" class="bd">
+                        <ul id="modCateList" class="list">
+   
+                        </ul>
+                        <div id="modCatePanel" class="panel-cate" style="display:none;">
+                        </div>
+                        <script>
+                            var category_data = [["$bkarr['name']|1",$typestr1,$typestr2]]; (function() {
+                                var e = [];
+                                category_data.forEach(function(t, n) {
+                                    var r = t[0].trim().split("|"),
+                                    i = r[0],
+                                    s = r[1],
+                                    o = [];
+                                    t[1].forEach(function(e) {
+                                        var t = e.split("|"),
+                                        n = t[0],
+                                        r = t[1];
+                                        o.push('<li><a href="forum.php?mod=forumdisplay&fid=$fid&filter=typeid&typeid=', r, '">', n, "</a></li>")
+                                    });
+                                    var u = !1;
+                                    if (t.length == 2 || t[2].length == 0) u = !0;
+                                    e.push('<li data-index="', n, '" class="item ', u ? "item-nosub": "", '"><h4><a href="<!--{eval echo getfurl($fid)}-->', '', '">', i, "</a></h4><ul>", o.join(""), "</ul></li>")
+                                }),
+                                W("#modCateList").html(e.join(""))
+                            })()
+                        </script>
+                    </div>
+                    <div class="ft">
+                    </div>
+                </div>
+				<!--{if $config['gg']}-->
+					$config['gg']
+				<!--{/if}-->
+            </div>
+<style type="text/css">
+	
+.new-q-holder a {
+    background: url("source/plugin/liangjianwenwen/images/wenw.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 45px;
+    outline: medium none;
+    text-indent: -9999px;
+    width: 170px;
+}
+</style>
+            <div class="extra">
+               <div class="bm"><div class="bm_c">
+<font color="#A0A0A0">{lang liangjianwenwen:wenwen13}</font><br><span class="new-q-holder"><a  href="forum.php?mod=post&action=newthread&fid=$fid&special=3">{lang liangjianwenwen:wenwen14}</a></span>
+</div></div>
+               
+                <div class="mod-week-star">
+                    <div class="hd">
+                        <h3>
+                            {lang liangjianwenwen:wenwen15}
+                        </h3>
+                    </div>
+                    <div class="bd">
+                        <div class="info">
+<a href="home.php?mod=space&uid=$bruid&do=profile" class="pic" style="margin-top:5px;">
+{eval echo avatar($bruid,'small')}</a>
+                            <div class="text">
+                                <p class="name">
+                                    $xingming                                </p>
+									
+                                <p>
+                                   {lang liangjianwenwen:wenwen11}
+                                    <em style="color:#FF6600">
+                                        $num                                   </em>
+                                    
+                                </p>
+								<p> {lang liangjianwenwen:wenwen12}
+                                    <em style="color:#FF6600">
+                                        $cainalv
+                                    </em></p>
+                            </div>
+                        </div>
+                        <!--div class="status">
+                            <ul>
+                                <li>
+                                    {lang liangjianwenwen:wenwen11}
+                                    <em>
+                                        $num                                   </em>
+                                </li>
+                                <li>
+                                    {lang liangjianwenwen:wenwen12}
+                                    <em>
+                                        $cainalv
+                                    </em>
+                                </li>
+                            </ul>
+                        </div-->
+                        <div class="list-best">
+                            <h4>
+                                {lang liangjianwenwen:wenwen17}
+                            </h4>
+                            <ul class="list">
+<!--{loop $allbest $key $val}-->
+                                <li>
+                                    <a target="_blank" href="<!--{eval echo getturl($val['tid'])}-->">
+                                        $val['subject']                                    </a>
+                                </li>
+								<!--{/loop}-->
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+				<div id="mod-user-wealth" class="mod-user-wealth" >
+				<div class="hd">
+				<h3>{lang liangjianwenwen:wenwen18}</h3><p class="date"></p>
+				</div>
+				<div class="bd">
+				<ul class="list">
+				<!--{eval $sign=0;}-->
+				<!--{loop $pmarr $key $val}-->
+				<!--{eval $user=getuserbyuid($val['uid']);}-->
+				<li><span class="num no1"  style=" background-position: -969px <!--{eval echo -78+$sign*-22}-->px;">2</span><a class="name" target="_blank" href="<!--{if $config['isrewrite']}-->space-uid-{$val['uid']}.html<!--{else}-->home.php?mod=space&uid=$val['uid']<!--{/if}-->">$user['username']</a><span class="wealth">$val[$wendajf]</span></li>
+				<!--{eval $sign++;}-->
+				<!--{/loop}-->
+				</ul>
+				</div>
+				</div>
+				
+
+            </div>			
+        </div>
+    </div>
+    <div class="panel-setting" style="display:none;">
+        <div class="hd">
+        </div>
+       
+    </div>
+   <script src="source/plugin/liangjianwenwen/js/1.js" type="text/javascript"></script>
+    <script src="source/plugin/liangjianwenwen/js/2.js" type="text/javascript"></script>    
+
+    <script src="source/plugin/liangjianwenwen/js/4.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	<!--
+		(function(){function h(e,t){var n=this;n.host=e,c.call(n,t),this.items=u(e,this.tabSelector)||[],this.views=this.views||this.viewSelector&&u(e,this.viewSelector)||[];var r=-1,a=this.items;for(var h=0;h<a.length;h++)if(i(a[h],this.selectedClass)){r=h;break}r>-1&&this.switchTo(r);if(n.autoPlay){var p=0;function d(){clearInterval(p),p=setInterval(function(){e.offsetWidth&&!n.autoPlayPausing&&n.next()},n.autoPlayTime||3e3)}d(),l(e,"mouseenter",function(){clearInterval(p)}),l(e,"mouseleave",d)}this.pageUpSelector&&f(e,this.pageUpSelector,"click",function(e){n.previous(),e.preventDefault()}),this.pageDownSelector&&f(e,this.pageDownSelector,"click",function(e){n.next(),e.preventDefault()});if(this.tabSelector){if(n.supportMouseenter){var v=0;f(e,n.tabSelector,"mouseenter",function(e){var t=this;s(t,n.preselectedClass),n.mouseenterSwitchTime!=null&&(clearTimeout(v),v=setTimeout(function(){n.switchToItem(t)},n.mouseenterSwitchTime|0)),e.preventDefault()}),f(e,n.tabSelector,"mouseleave",function(e){o(this,n.preselectedClass),clearTimeout(v),e.preventDefault()})}var m=this.switchEvents||this.defaultSwitchEvents;f(e,n.tabSelector,String(m),function(e){n.switchToItem(this),e.preventDefault()})}}var e=QW.ArrayH.indexOf,t=QW.ObjectH.mix,n=QW.CustEvent,r=QW.NodeH,i=r.hasClass,s=r.addClass,o=r.removeClass,u=r.query,a=QW.EventTargetH,f=a.delegate,l=a.on,c=function(e){t(this,e||{},!0),this.items=this.items||[],n.createEvents(this,c.EVENTS)};c.EVENTS=["beforeswitch","afterswitch"],t(c.prototype,{selectedIndex:-1,isSwitching:!1,switchTo:function(e){alert("Switch to: "+e)},switchToItem:function(t){var n=e(this.items,t);return this.switchTo(n)},next:function(){var e=(this.selectedIndex+1)%this.items.length;this.switchTo(e)},previous:function(){var e=this.selectedIndex-1;e<0&&(e=this.items.length-1),this.switchTo(e)}}),t(h.prototype,[{tabSelector:".slide-nav li",viewSelector:".slide-content li",pageDownSelector:".slide-pagedown",pageUpSelector:".slide-pageup",selectedClass:"selected",preselectedClass:"preselected",selectedViewClass:"selected",defaultSwitchEvents:["click"],switchTo:function(e){var t=this.selectedIndex,n={fromIndex:t,toIndex:e,fromItem:this.items[t],toItem:this.items[e],fromView:this.views[t],toView:this.views[e]};if(e==t)return;if(!this.fire("beforeswitch",n))return;this.isSwitching=!0,this.selectedIndex=e,this.switchAnim(n)},switchAnim:function(e){function n(){t.switchDone(e)}var t=this;e.fromItem&&o(e.fromItem,this.selectedClass),e.toItem&&s(e.toItem,this.selectedClass);switch(this.animType){case"fade":return e.fromView&&QW.NodeW(e.fromView).animate({opacity:{from:1,to:0}},this.animDur||500,function(){QW.NodeW(e.fromView).removeClass(t.selectedViewClass)},this.animEasing),QW.NodeW(e.toView).addClass(t.selectedViewClass).animate({opacity:{from:0,to:1}},this.animDur||500,n,this.animEasing);case"scroll":if(e.fromView)for(var r=0,i;i=t.views[r++];)QW.NodeH[i==e.fromView||i==e.toView?"show":"hide"](i);var u=e.toView.parentNode,a=4;while(a--){if(u.scrollWidth>1.5*u.offsetWidth)return e.fromView&&(u.scrollLeft=e.fromView.offsetLeft),QW.NodeW(u).animate({scrollLeft:{to:e.toView.offsetLeft}},this.animDur||500,n,this.animEasing);if(u.scrollHeight>1.5*u.offsetHeight)return e.fromView&&(u.scrollTop=e.fromView.offsetTop),QW.NodeW(u).animate({scrollTop:{to:e.toView.offsetTop}},this.animDur||500,n,this.animEasing);u=u.parentNode};default:e.fromView&&o(e.fromView,this.selectedViewClass),e.toView&&s(e.toView,this.selectedViewClass),n()}},switchDone:function(e){this.isSwitching=!1,this.selectedIndex=e.toIndex,this.fire("afterswitch",e)}},c.prototype]),QW.provide({TabView:h,Slide:h})})(),function(){var e=QW.ObjectH.mix,t=QW.NodeH,n=t.g,r=QW.Jss,i=QW.JssTargetH,s=i.getJss;r.addRules({".widget-slide":{tabSelector:".slide-nav li",viewSelector:".slide-content li.pic-item",pageUpSelector:".slide-pageup",pageDownSelector:".slide-pagedown",autoPlay:!0,supportMouseenter:!0,mouseenterSwitchTime:300}});var o={switchable:function(t,r){t=n(t);var i={},o="tabSelector viewSelector pageUpSelector pageDownSelector selectedClass preselectedClass selectedViewClass autoPlay autoPlayPausing autoPlayTime supportMouseenter mouseenterSwitchTime switchEvents animType animDur switchEvents onbeforeswitch onafterswitch".split(" ");for(var u=0;u<o.length;u++){var a=s(t,o[u]);a!=null&&(i[o[u]]=a)}e(i,r),t.__slide=new QW.Slide(t,i)}};QW.NodeW.pluginHelper(o,"operator"),QW.Dom&&QW.ObjectH.mix(QW.Dom,o),QW.DomU.ready(function(){QW.NodeW("div.widget-slide").switchable()})}();(function(){var e=W(".mod-user-wealth-top"),t=e.query(".bd ul");t.html('<li style="padding:10px 10px;"></li>');return})(),function(){var e=null,t=null,n=150;W("#modCatePanel").on("mouseenter",function(e){t&&clearTimeout(t)}).on("mouseleave",function(r){t&&clearTimeout(t),t=setTimeout(function(){W("#modCatePanel").hide(),e&&e.removeClass("hover")},n)}),W("#modCateList").delegate(".item","mouseenter",function(r){var i=W(this);if(i.hasClass("item-nosub"))return!1;var a=i.getRect(),a=i.getRect(),o=i.getAttr("data-index"),u=category_data[o],rr = u[0].trim().split("|"),
+                                    s = rr[1];if(!u||!u[2])return!1;t&&clearTimeout(t),t=setTimeout(function(){var t=[];u[2].forEach(function(e){var n=e.split("|"),r=n[0],i=n[1];t.push('<li><a href="forum.php?mod=forumdisplay&fid=',$fid,'&filter=typeid&typeid=',i,'">',r,"</a></li>")}),W("#modCatePanel").html('<ul class="clearfix">'+t.join("")+"</ul>"),W("#modCateList .item").removeClass("hover"),W("#modCatePanel").css({top:a.top-$px+"px"}).show(),i.addClass("hover"),e=i},n)}).delegate(".item","mouseleave",function(r){var i=W(this);if(i.hasClass("item-nosub"))return!1;t&&clearTimeout(t),t=setTimeout(function(){W("#modCatePanel").hide(),e&&e.removeClass("hover")},n)})}();
+	//-->
+	</script>
+{template common/footer}

@@ -7,15 +7,18 @@
   +----------------------------------------------------------------------+
  */
 
-$projects = C::t('project_info')->fetch_all();
-$status = array('0'=>'初始','1'=>'报名中','2'=>'培训中','3'=>'进行中','4'=>'未出奖','5'=>'已出奖');
+$id = getgpc('a') ? getgpc('a') : 1;
 
-foreach($projects as $key => $value)
+$contents = C::t('content_info')->fetch_by_id($id);
+
+
+
+foreach($contents as $key => $value)
 {	
-	$join_num[]  = count(json_decode($value['qualification_list']));//the number of joined groups
-	$winner_list[] = $value['winner_list'];
+	//$join_num[]  = count(json_decode($value['qualification_list']));//the number of joined groups
+	//$winner_list[] = $value['winner_list'];
 }
 
 
-include template('diy:timeline/index');
+include template('diy:content/index');
 ?>

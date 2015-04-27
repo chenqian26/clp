@@ -5,11 +5,21 @@
 		</div>
 	</div>
 
-<div style="color:#005F30">
-  <ul>
+<div style="color:#005F30; font:bold 30px 宋体;">
+  <table cellpadding="10" cellspacing="20">
     <!--{loop $projects $key $value}-->
-    <li>{$projects[$key]['name']}   状态:{$projects[$key]['status']}  <a href='timeline.php?mod=join&pid={$projects[$key]['id']}'>报名</a></li>
+    <tr>
+    <td>{$projects[$key]['name']}</td>
+    <td>{$status[$projects[$key]['status']]}</td>
+    <!--{if $projects[$key]['status']==1}-->
+        <td>-------><a href='timeline.php?mod=join&pid={$projects[$key]['id']}'>报名</a></td>
+    <!--{elseif $projects[$key]['status']==5}-->
+        <td>获奖名单</td>
+    <!--{else}-->
+        <td></td>
+    <!--{/if}-->
+    </tr>
     <!--{/loop}-->
-  </ul>
+  </table>
   </div>
 <!--{template common/footer}-->

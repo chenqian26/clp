@@ -17,8 +17,7 @@ $fid = getgpc('fid');//
 
 if(!$pid)
 {
-	echo "pid is null";
-	exit;
+	showmessage("pid is null","timeline.php",$values=array(),array('timeout'=>true,'refreshtime'=>4));
 }
 $owngroups = C::t('project_info')->fetch_owngroups_by_id($uid);
 if(!$owngroups)
