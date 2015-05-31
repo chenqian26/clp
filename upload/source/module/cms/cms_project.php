@@ -16,8 +16,8 @@ $status['dianshe'] = array('0'=>'初始','1'=>'报名','2'=>'报名截至，待�
 $status['chuangxin'] = array('0'=>'初始','1'=>'报名','2'=>'报名截至，待开题','3'=>'开题','4'=>'开题完成，待中期','5'=>'中期','6'=>'中期完成，待结题','7'=>'结题','8'=>'结题，待公布成绩','9'=>'成绩公布');
 $status['modianshiyan'] = array('0'=>'初始','1'=>'报名中','2'=>'报名截至，待进行','3'=>'进行中','4'=>'进行中','5'=>'课程结束');
 
-$uid = C::app()->var['uid'];
-$owngroups = get_owngroups($uid);
+//$uid = C::app()->var['uid'];
+//$owngroups = get_owngroups($uid);
 
 foreach($projects as $key => $value)
 {	
@@ -60,12 +60,11 @@ foreach($projects as $key => $value)
 
 }
 
-
-
-
 //dump($projects);
 //exit;
 
 
-include template('diy:timeline/index');
+
+
+include template('diy:cms/project');
 ?>

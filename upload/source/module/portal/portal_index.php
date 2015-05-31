@@ -29,5 +29,5 @@ if(isset($_G['makehtml'])){
 	helper_makehtml::portal_index();
 }
 
-include_once template('diy:portal/index');
+include_once template('diy:portal/amoeba/index');
 ?>

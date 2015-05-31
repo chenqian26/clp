@@ -9,7 +9,38 @@
 
 $id = getgpc('a') ? getgpc('a') : 1;
 
-$contents = C::t('content_info')->fetch_by_id($id);
+
+$contents = C::t('portal_article_title')->range();
+
+
+foreach($contents as $key =>$value)
+{
+	if($value['pic'])
+	{	
+	$contents[$key]['pic']= pic_get($value['pic'], '', $value['thumb'], $value['remote'], 1, 1);
+	}
+	$contents[$key]['dateline']= dgmdate($value['dateline']);
+	$contents[$key]['link'] = 'portal.php?mod=view&	aid='.$value['aid']; 
+
+}
+$contents[2] = $contents[0];
+$contents[2]['aid'] = 5;
+
+$contents[3] = $contents[0];
+$contents[3]['aid'] = 6;
+
+$contents[4] = $contents[0];
+$contents[4]['aid'] = 7;
+
+$contents[5] = $contents[0];
+$contents[6]['aid'] = 8;
+
+$contents[6] = $contents[0];
+$contents[6]['aid'] = 9;
+
+//exit;
+//print_r($_G[setting][navs]);
+//exit;
 
 
 
