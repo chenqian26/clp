@@ -1,0 +1,162 @@
+@charset "utf-8";
+body {
+          font-family: "宋体";
+            font-size: 12px;
+              margin: 0 0;
+                background: #ddf0f6;
+        }
+        .index {
+                   margin:0;
+                      padding:0;
+              }
+              #index {
+                         width:1002px;
+                            height:802px;
+                               margin:0 auto;
+                                  background:#FFFFFF;
+                                     border:1px solid #5599bb;
+                             }
+
+                             #right {
+                                        width:1000px;
+                                           height:800px;
+                                              float:right;
+                                                 margin-top:15px;
+                                                    margin-bottom:5px;
+                                            }
+                                            /* .right {
+                                             *    width:730px;
+                                             *       height:255px;
+                                             *          border-bottom:1px dotted  #5599bb;
+                                             *          } */
+.container, .container img{
+           width:1000px;
+              height:500px;
+      }
+      .container img{
+                 border:0;
+                    vertical-align:top;
+            }
+            /* .sub {
+             *    width:300px;
+             *       height:28px;
+             *          line-height:30px;
+             *             font-size:14px;
+             *                color:#5599BB;
+             *                   font-weight:bold;
+             *                      padding-left:25px;
+             *                         margin-left:10px;
+             *                            display:block;
+             *                               border-bottom:2px solid #5599BB;
+             *                                  background:url(../img/12.gif) 7px  10px no-repeat;
+             *                                  } */
+
+.right1 {
+           width:1000px;
+              height:300px;
+      }
+      .load {
+                 width:660px;
+                    height:200px;
+                       float:left;
+               }
+               .sub1 {
+                          width:290px;
+                             height:28px;
+                                line-height:30px;
+                                   font-size:14px;
+                                      color:#5599BB;
+                                         font-weight:bold;
+                                            padding-left:25px;
+                                               margin-left:10px;
+                                                  display:block;
+                                                     border-bottom:2px solid #5599BB;
+                                                        background:url(./images/12.gif) 7px  10px no-repeat;
+                                                }
+                                                #notice {
+                                                        padding:0 0;
+                                                           width:325px;
+                                                              height:200px;
+                                                                 float:left;
+                                                         }
+                                                         #notice1 {
+                                                                    width:325px;
+                                                                       height:200px;
+                                                                          float:right;
+                                                                  }
+                                                                  #new {
+                                                                             width:325px;
+                                                                                height:200px;
+                                                                                   margin-right:5px;
+                                                                                      float:right;
+                                                                              }
+                                                                              .my_notice {
+                                                                                      padding:0 0;
+                                                                                         width:325px;
+                                                                                            height:150px;
+                                                                                    }
+                                                                                    .my_notice ul {
+                                                                                               width:315px;
+                                                                                                  height:150px;
+                                                                                                     margin:0 0;
+                                                                                                        padding:0 0;
+                                                                                                           margin-left:10px; 
+                                                                                                   }
+                                                                                                   .my_notice li {
+                                                                                                              width:310px;
+                                                                                                                 height:24px;
+                                                                                                                    line-height:25px;
+                                                                                                                       overflow:hidden;
+                                                                                                                          list-style-type:none;
+                                                                                                                             border-bottom:1px dashed #5599BB;
+                                                                                                                     }
+                                                                                                                     .my_notice a {
+                                                                                                                                text-decoration:none;
+                                                                                                                                   color:#000;
+                                                                                                                                      padding-left:15px;
+                                                                                                                                         width:295px;
+                                                                                                                                            height:25px;
+                                                                                                                                               display:block;
+                                                                                                                                       }
+                                                                                                                                       .my_notice a:hover {
+                                                                                                                                                  color:#5599BB;
+                                                                                                                                                     background:url(./images/louder.gif) 2px  8px no-repeat;
+                                                                                                                                             }
+                                                                                                                                             .date {
+                                                                                                                                                        float:right;
+                                                                                                                                                }
+                                                                                                                                                .more {
+                                                                                                                                                            float:right;
+                                                                                                                                                                padding-right:20px;
+                                                                                                                                                                        line-height:25px;
+                                                                                                                                                                }
+                                                                                                                                                                .more a {
+                                                                                                                                                                            color:#5599BB;
+                                                                                                                                                                                text-decoration:none;
+                                                                                                                                                                        }
+                                                                                                                                                                        .more a:hover {
+                                                                                                                                                                                    color:#000;
+                                                                                                                                                                            }
+.my_download {
+ background:#f8f8f8;
+ border:1px solid #eee;
+ font-color:#f8d2ae;
+}
+.my_tr {
+border-top:1px solid #eee;
+}
+.picture1{
+padding:0 0 0 0;
+}
+.fix1
+{
+font-size:25px;
+color:#0000ff;
+padding:0 0 0 0;
+}
+.my_td{
+padding:0 0 10px 0;
+}
+.my_download a{
+color:#666;
+}

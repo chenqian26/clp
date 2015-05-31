@@ -5,21 +5,894 @@
 		</div>
 	</div>
 
-<div style="color:#005F30; font:bold 30px 宋体;">
+
+<script>
+
+
+var isIe=(document.all)?true:false;
+//设置select的可见状态
+function setSelectState(state)
+{
+var objl=document.getElementsByTagName('select');
+for(var i=0;i<objl.length;i++)
+{
+objl[i].style.visibility=state;
+}
+}
+function mousePosition(ev)
+{
+if(ev.pageX || ev.pageY)
+{
+return {x:ev.pageX, y:ev.pageY};
+}
+return {
+x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,y:ev.clientY + document.body.scrollTop - document.body.clientTop
+};
+}
+//弹出方法
+function showMessageBox(wTitle,content,x,y,wWidth)
+{
+closeWindow();
+var bWidth=parseInt(document.documentElement.scrollWidth);
+var bHeight=parseInt(document.documentElement.scrollHeight);
+if(isIe){
+setSelectState('hidden');}
+var back=document.createElement("div");
+back.id="back";
+var styleStr="top:0px;left:0px;position:absolute;background:#666;width:"+bWidth+"px;height:"+bHeight+"px;";
+styleStr+=(isIe)?"filter:alpha(opacity=0);":"opacity:0;";
+back.style.cssText=styleStr;
+document.body.appendChild(back);
+showBackground(back,50);
+var mesW=document.createElement("div");
+mesW.id="mesWindow";
+mesW.className="mesWindow";
+mesW.innerHTML="<div class='mesWindowTop'><table width='100%' height='100%'><tr><td>"+wTitle+"</td><td style='width:1px;'><input type='button' onclick='closeWindow();' title='关闭窗口' class='close' value='关闭' /></td></tr></table></div><div class='mesWindowContent' id='mesWindowContent'>"+content+"</div><div class='mesWindowBottom'></div>";
+styleStr="left:"+(((x-wWidth)>0)?(x-wWidth/2):x)+"px;top:"+(y)+"px;position:absolute;width:"+wWidth+"px;";
+mesW.style.cssText=styleStr;
+document.body.appendChild(mesW);
+}
+//让背景渐渐变暗
+function showBackground(obj,endInt)
+{
+if(isIe)
+{
+obj.filters.alpha.opacity+=1;
+if(obj.filters.alpha.opacity<endInt)
+{
+setTimeout(function(){showBackground(obj,endInt)},5);
+}
+}else{
+var al=parseFloat(obj.style.opacity);al+=0.01;
+obj.style.opacity=al;
+if(al<(endInt/100))
+{setTimeout(function(){showBackground(obj,endInt)},5);}
+}
+}
+//关闭窗口
+function closeWindow()
+{
+if(document.getElementById('back')!=null)
+{
+document.getElementById('back').parentNode.removeChild(document.getElementById('back'));
+}
+if(document.getElementById('mesWindow')!=null)
+{
+document.getElementById('mesWindow').parentNode.removeChild(document.getElementById('mesWindow'));
+}
+if(isIe){
+setSelectState('');}
+}
+//弹出main
+function MessageBox(ev,title,text,type)
+{
+//var objPos = mousePosition(ev);
+var x=jq(window).width()/2;
+var y=jq(window).height()/2;
+
+if(type==0)
+{
+  messContent="<div style='padding:10px 0 10px 0;text-align:center'>";
+  //messContent+="<p>"+text+"</p>"
+  var winner_list = eval('(' + text + ')');
+  for(var reward in winner_list)
+  { 
+    messContent+="<table cellpadding='5' cellspacing='10'><caption>"+reward+"</caption>";
+    for (group_list in winner_list[reward])
+    {
+      messContent+="<tr><td>"+group_list+":</td>";
+      for (p_list in winner_list[reward][group_list])
+      {
+        messContent+="<td>"+winner_list[reward][group_list][p_list]+"</td>";
+      }
+      messContent+="</tr>";
+    }
+  }
+
+  messContent+="</div>";
+}
+else if(type==1)
+{
+  messContent="<div style='padding:20px 0 20px 0;text-align:center'><ul>";
+  for (var i=0;i<text.length;i++)
+  {
+    messContent+="<li><a href='timeline.php?mod=join&fid="+text[i]['fid']+"&pid="+text[i]['join_pid']+"'>"+text[i]['name']+"</a></li>";
+  }
+  messContent+="</ul></div>";
+}
+//<table cellpadding="10" cellspacing="20"><tr><td>test1</td><td>test2</td></tr></table>
+showMessageBox(title,messContent,x,y,500);
+}
+</script>
+
+
+
+<div style="color:#005F30; font:bold 30px 宋体;align:center;">
   <table cellpadding="10" cellspacing="20">
     <!--{loop $projects $key $value}-->
-    <tr>
-    <td>{$projects[$key]['name']}</td>
-    <td>{$status[$projects[$key]['status']]}</td>
-    <!--{if $projects[$key]['status']==1}-->
-        <td>-------><a href='timeline.php?mod=join&pid={$projects[$key]['id']}'>报名</a></td>
-    <!--{elseif $projects[$key]['status']==5}-->
-        <td>获奖名单</td>
-    <!--{else}-->
+    <!--{if $projects[$key]['type']=='dianshe'}-->
+      <!--{if $projects[$key]['status']==0}-->
+    <tr class="{$projects[$key]['type']}">
+      <td>{$projects[$key]['name']}</td>
+      <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+      <!--{elseif $projects[$key]['status']==1}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
         <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <!--{if $projects[$key]['is_joined']==false}-->
+                <li style="width: 170px"><button class="button join log" id="join{$key}">报名</button></li>
+            <!--{elseif $projects[$key]['is_joined']==true}-->
+                <li style="width: 170px;color:red">已报名</li>
+            <!--{/if}-->
+            <li style="width: 170px">培训</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+
+    <!--{elseif $projects[$key]['status']==2}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==3}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 170px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==4}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 170px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+
+    <!--{elseif $projects[$key]['status']==5}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td><input type="file" name="file_upload" id="file_upload" multiple="true"/></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==6}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==7}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">培训</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px"><button  id="winner_list{$key}" class="winner_list">获奖名单</button></li>
+          </ul>
+        </td>
+      </tr>
     <!--{/if}-->
-    </tr>
+
+    <!--{elseif $projects[$key]['type']=='chuangxin'}-->
+      <!--{if $projects[$key]['status']==0}-->
+    <tr class="{$projects[$key]['type']}">
+      <td>{$projects[$key]['name']}</td>
+      <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+      <!--{elseif $projects[$key]['status']==1}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <!--{if $projects[$key]['is_joined']==false}-->
+                <li style="width: 170px"><button class="button join log" id="join{$key}">报名</button></li>
+            <!--{elseif $projects[$key]['is_joined']==true}-->
+                <li style="width: 170px;color:red">已报名</li>
+            <!--{/if}-->
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+
+    <!--{elseif $projects[$key]['status']==2}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==3}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==4}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==5}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==6}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==7}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==8}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px">成绩公布</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==9}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+             <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 170px">开题</li>
+            <li style="width: 170px">中期</li>
+            <li style="width: 150px">结题</li>            
+            <li style="width: 150px"><button  id="winner_list{$key}" class="winner_list">获奖名单</button></li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{/if}-->
+
+    <!--{elseif $projects[$key]['type']=='modianshiyan'}-->
+    <!--{if $projects[$key]['status']==0}-->
+    <tr class="{$projects[$key]['type']}">
+      <td>{$projects[$key]['name']}</td>
+      <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">课程结束</li>
+          </ul>
+        </td>
+      </tr>
+      <!--{elseif $projects[$key]['status']==1}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <!--{if $projects[$key]['is_joined']==false}-->
+                <li style="width: 170px"><button class="button join log" id="join{$key}">报名</button></li>
+            <!--{elseif $projects[$key]['is_joined']==true}-->
+                <li style="width: 170px;color:red">已报名</li>
+            <!--{/if}-->
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">课程结束</li>
+          </ul>
+        </td>
+      </tr>
+
+
+    <!--{elseif $projects[$key]['status']==2}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">课程结束</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==3}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-inactive"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">课程结束</li>
+          </ul>
+        </td>
+      </tr>
+
+
+    <!--{elseif $projects[$key]['status']==4}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td><input type="file" name="file_upload" id="file_upload" multiple="true"/></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-inactive"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">课程结束</li>
+          </ul>
+        </td>
+      </tr>
+
+    <!--{elseif $projects[$key]['status']==5}-->
+    <tr class="{$projects[$key]['type']}">
+        <td>{$projects[$key]['name']}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td colspan="2" class="progress-new">
+          <ul class="progress">
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+            <li class="line-active"></li>
+            <li class="dot-active"></li>
+          </ul>
+          <ul class="progress-desc" style="Font-size: 15px">
+            <li style="width: 170px">初始</li>
+            <li style="width: 170px">报名</li>
+            <li style="width: 150px">进行</li>
+            <li style="width: 150px">课程结束</li>
+          </ul>
+        </td>
+      </tr>
+    <!--{/if}-->
+    <!--{/if}-->
     <!--{/loop}-->
   </table>
   </div>
+
+<script>
+var jq = jQuery.noConflict();
+jq(document).ready(function(){
+    jq("button.winner_list").click(function(e){
+        //alert(jq(e.target).attr('id'));
+        var winner_list_id = jq(e.target).attr('id');
+          jq.ajax({url:"timeline.php?mod=ajax",  type: "POST",  data:{trans_data:winner_list_id},async:false , dataType:"json",
+            success:function(jsonList){
+
+              //alert(jsonList.winner_list);
+              MessageBox(this,jsonList.name,jsonList.winner_list,0);
+            }
+          });
+    });
+
+    jq("button.join").click(function(e){
+        var join_id = jq(e.target).attr('id');
+        //alert(jq(e.target).attr('id'));
+          jq.ajax({url:"timeline.php?mod=ajax",  type: "POST",  data:{trans_data:join_id},async:false , dataType:"json",
+            success:function(jsonList){
+              for (var i=0;i<jsonList.length;i++)
+              {
+                //alert(jsonList[i]['join_pid']);
+              }
+              
+              MessageBox(this,"选择你要报名的队伍",jsonList,1);
+            }
+          });
+    });
+
+});
+
+jq(document).ready(function() {
+    jq('#file_upload').uploadify({
+        'swf'      : 'third/uploadify/uploadify.swf?var='+(new Date()).getTime(),
+        //'uploader' : 'third/uploadify/uploadify.php',
+        'uploader' : 'third/uploadify/upload-report.php',
+        'method'   : 'post',
+        'removeCompleted' : 'false',
+        //'formData' : { 'upload_dir' : 'dianshe' },
+        'buttonText' : '上传报告',
+        'onUploadStart' : function(file){
+            var type = jq("#file_upload").parents().parents().attr('class');
+            jq("#file_upload").uploadify("settings", "formData", { 'type': type });
+            //alert(type);       
+        },
+        'onUploadSuccess' : function(file, data, response) {
+           // alert('上传了');   
+        },
+        // Put your options here
+    });
+});
+</script>
+
+
+
 <!--{template common/footer}-->

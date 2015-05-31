@@ -1,0 +1,31 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+		<div class="z">
+			<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="download.php">{$_G[setting][navs][158][navname]}</a>$navigation
+		</div>
+	</div>
+
+<div class="my_download" style="font:14px Times New Roman;">
+  <table>
+    <tbody>
+      <tr class="my_tr">
+        <td class="my_td"><a href='download.php?path={$data['up_path']}'>返回上一级</a></td>
+        <td></td>
+      </tr>
+      <!--{loop $data['dir'] $value}-->
+      <tr class="my_tr">
+        <td class="my_td"> <span class="picture1">  <img src="{$_G['style'][imgdir]}/images/tr1.png"></img></span> <span class="fix1" > <a  href='download.php?path={$data['cur_path']}{$value}'>{$value}</a></span>  </td>
+        <td></td>
+      </tr >
+      <!--{/loop}-->
+      <!--{loop $data['file'] $value}-->
+      <tr class="my_tr">
+        <td class="my_td"> <span class="picture1"> <img src="{$_G['style'][imgdir]}/images/tr2.png"></img> </span><span class="fix1">  <a  href='download_common.php?filename={$data['cur_path']}{$value}'>$value></a></span> </td>
+        <td></td>
+      </tr>
+      <!--{/loop}-->
+    </tbody>
+  </table>
+</div>
+
+<!--{template common/footer}-->

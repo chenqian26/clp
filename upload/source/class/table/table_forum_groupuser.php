@@ -31,6 +31,31 @@ class table_forum_groupuser extends discuz_table
 		}
 		return $data;
 	}
+
+	public function fetch_all_username_by_fid($fid) {
+		if(empty($fid)) {
+			return array();
+		}
+		$data = array();
+		$query = DB::query("SELECT username FROM %t WHERE %i AND level>0 ORDER BY lastupdate DESC", array($this->_table, DB::field('fid', $fid)));
+		while($row = DB::fetch($query)) {
+			$data[] = $row['username'];
+		}
+		return $data;
+	}
+
+	public function fetch_all_uid_by_fid($fid) {
+		if(empty($fid)) {
+			return array();
+		}
+		$data = array();
+		$query = DB::query("SELECT uid FROM %t WHERE %i AND level>0 ORDER BY lastupdate DESC", array($this->_table, DB::field('fid', $fid)));
+		while($row = DB::fetch($query)) {
+			$data[] = $row['uid'];
+		}
+		return $data;
+	}
+
 	public function fetch_userinfo($uid, $fid) {
 		if(empty($uid) || empty($fid)) {
 			return array();

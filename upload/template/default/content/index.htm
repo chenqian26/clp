@@ -1,15 +1,31 @@
 <!--{template common/header}-->
 <div id="pt" class="bm cl">
 		<div class="z">
-			<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="content.php">{$_G[setting][navs][155][navname]}</a>$navigation
+			<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="content.php">{$_G[setting][navs][157][navname]}</a>$navigation
 		</div>
 	</div>
 <div id="article">
-	<ul>
-		<li>{$contents[0]['title']}</li>
-		<li>{$contents[0]['content']}</li>
-		<li>{$contents[0]['add_time']}</li>
-	</ul>
+  <div class="xiaoyu_case_container">
+    <div class="caseList">
+      <ul class="clearfix" id="masonry">
+        <!--{loop $contents $key $value}-->
+        <li class="item">
+          <a href="$contents[$key]['link']"><h2 class="caseList_title">$contents[$key]['title']</h2></a>
+          <p class="caseList_brand">$contents[$key]['dateline']</p>
+          <p class="caseList_img">
+            <a href="$contents[$key]['link']">
+              <img src="$contents[$key]['pic']" alt="$contents[$key]['hint']" width="204">
+            </a>
+          </p>
+          <div class="caseList_about">$contents[$key]['summary']</div>
+          <div class="xiaoyu_case_edit">
+            <a href="$contents[$key]['link']" class="caseList_more">READ MORE</a>  
+          </div>
+        </li>
+        <!--{/loop}-->
+      </ul>
+    </div>
+  </div>
 </div>
 
 <!--{template common/footer}-->

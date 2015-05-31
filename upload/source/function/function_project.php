@@ -10,6 +10,24 @@ if(!defined('IN_DISCUZ')) {
         exit('Access Denied');
 }
 
+function get_owngroups($uid)
+{
+  $owngroups = C::t('project_info')->fetch_owngroups_by_id($uid);
+
+  return $owngroups;
+}
+
+function is_group_joined($fid,$pid)
+{
+    $project = C::t('project_info')->fetch_by_id($id);
+    $list = json_decode($project[0]['qualification_list']);
+    if(!in_array($fid,$list,true))
+    {
+        return false;
+    }
+    return true;
+}
+
 function add_qualification_list($fid,$id)//群组id及项目id
 {
     $project = C::t('project_info')->fetch_by_id($id);

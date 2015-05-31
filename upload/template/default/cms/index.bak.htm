@@ -1,0 +1,60 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+		<div class="z">
+			<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="download.php">{$_G[setting][navs][159][navname]}</a>$navigation
+		</div>
+	</div>
+
+<div style="color:#87CEEB; font:bold 30px Times New Roman;align:center;">
+  <div class="left">
+    <div class="div1">
+      <div class="left_top"><img src="{$_G['style'][imgdir]}/left_nav/bbb_01.jpg"><img src="{$_G['style'][imgdir]}/left_nav/bbb_02.jpg" id="2"><img src="{$_G['style'][imgdir]}/left_nav/bbb_03.jpg"><img src="{$_G['style'][imgdir]}/left_nav/bbb_04.jpg"> </div>
+        <div class="div2"><div class="jbsz"> </div>基本管理</div>
+        <div class="div3">
+          <ul>
+            <li> 网站配置</li>
+            <li> 管理设置</li>
+            <li> 导航菜单</li>
+          </ul>
+        </div>
+        <div class="div2"><div class="xwzx"> </div>新闻中心</div>
+        <div class="div3">
+          <ul>
+            <li> 管理文章</li>
+            <li> 文章分类</li>
+            <li> 添加文章</li>
+          </ul>
+        </div>
+        <div class="div2"><div class="zxcp"> </div>项目管理</div>
+        <div class="div3">
+          <ul>
+            <li><a href="cms.php?mod=project">竞赛管理</a></li>
+            <li>图片分类</li>
+            <li>添加图片</li>
+          </ul>
+        </div>
+        <div class="div2"><div class="lmtj"> </div> 栏目添加</div>
+        <div class="div3">
+          <ul>
+            <li> 文章系统</li>
+            <li> 图片系统</li>
+            <li> 添加表单</li>
+            <li> 招聘系统</li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+var jq = jQuery.noConflict();
+jq(document).ready(function(){
+        jq(".div2").click(function(){ 
+                jq(this).next("div").slideToggle("slow")  
+                      .siblings(".div3:visible").slideUp("slow");
+                          });
+          });
+</script>
+
+<!--{template common/footer}-->
